@@ -21,14 +21,15 @@ let s:hdr = '*******************************************************************
           \ '*******************************************************************************\n\:\n'
 
 let s:autocomplete_matches = [
- \      ['\v\cpulse'.s:eol,             '\!PULSE(\:V1 V2 delay rise fall width period)' ],
- \      ['\v\csin'.s:eol,               '\!SIN(\:Vavg Vamp freq)'                       ],
- \      ['\v\cpwl'.s:eol,               '\!PWL(\:T1 V1)'                                ],
- \      ['\v\c^(v\w+)'.s:eol,           ' \1 gnd'                                       ],
- \      ['\v\c^(d\w+)'.s:eol,           ' Vp Vn MODELNAME'                              ],
- \      ['\v\c^(m\w+)'.s:eol,           ' Vd Vg Vs Vb MODELNAME L=\: W='                ],
+ \      ['\v\cpulse'.s:eol            , '\!PULSE(\:V1 V2 delay rise fall width period)' ],
+ \      ['\v\csin'.s:eol              , '\!SIN(\:Vavg Vamp freq)'                       ],
+ \      ['\v\cpwl'.s:eol              , '\!PWL(\:T1 V1)'                                ],
+ \      ['\v\c^(v\w+)'.s:eol          , ' \1 gnd'                                       ],
+ \      ['\v\c^(d\w+)'.s:eol          , ' Vp Vn MODELNAME'                              ],
+ \      ['\v\c^(m\w+)'.s:eol          , ' Vd Vg Vs Vb MODELNAME L=\: W='                ],
  \      ['\v\c.subckt\s+(\w+).*'.s:eol, '\n\:\n.ends ; \1'                              ],
- \      ['\vhead'                       , '\!'.s:hdr                                    ],
+ \      ['\vhead'                     , '\!'.s:hdr                                      ],
+ \      ['\v\*'.s:eol                 , '\!'.s:com                                      ]
  \ ]
 
 if has_key(g:, "autocomplete_matches")
