@@ -12,7 +12,7 @@ endif
 " Setup Expressions for Autocomplete plugin
 
 let s:eol = '\s*([;$].*)?$'
-let s:com = '* ' . repeat("-", 50)
+let s:com = '** ' . repeat("-", 60-3)
 let s:hdr = '*******************************************************************************\n' .
           \ '** File        : \<%\>\n' .
           \ '** Author      : \<$USER\>\n' .
@@ -29,6 +29,7 @@ let s:autocomplete_matches = [
  \      ['\v\c^(m\w+)'.s:eol          , ' Vd Vg Vs Vb MODELNAME L=\: W='                ],
  \      ['\v\c.subckt\s+(\w+).*'.s:eol, '\n\:\n.ends ; \1'                              ],
  \      ['\vhead'                     , '\!'.s:hdr                                      ],
+ \      ['\v* (.*)'.s:eol             , '\!** \1 \(repeat("-",61-col("."))\)'           ],
  \      ['\v\*'.s:eol                 , '\!'.s:com                                      ]
  \ ]
 

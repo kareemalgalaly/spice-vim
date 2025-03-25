@@ -13,6 +13,8 @@ source $VIMRUNTIME/syntax/spice.vim
 "syn match spiceComment  "\*.*$" contains=@Spell
 syn match spiceComment ";.*"
 
-"hi link inlineComment Comment
+syn keyword spiceTodo TODO FIXME containedin=spiceComment
+
+" hi link spiceTodo Comment
 
 let b:current_syntax="spice"
