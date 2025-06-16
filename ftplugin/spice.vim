@@ -29,12 +29,9 @@ let s:autocomplete_matches = [
  \      ['\v\c^(m\w+)'.s:eol          , ' Vd Vg Vs Vb MODELNAME L=\: W='                ],
  \      ['\v\c.subckt\s+(\w+).*'.s:eol, '\n\:\n.ends ; \1'                              ],
  \      ['\vhead'                     , '\!'.s:hdr                                      ],
- \      ['\v* (.*)'.s:eol             , '\!** \1 \(repeat("-",61-col("."))\)'           ],
+ \      ['\v\* (.*)'.s:eol            , '\!** \1 \(repeat("-",61-col("."))\)'           ],
  \      ['\v\*'.s:eol                 , '\!'.s:com                                      ]
  \ ]
 
-if has_key(g:, "autocomplete_matches")
-    call autocomplete#register("spice", s:autocomplete_matches)
-endif
-
+if exists('*autocomplete#register') | call autocomplete#register("spice", s:autocomplete_matches) | endif
 
