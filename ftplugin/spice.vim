@@ -9,16 +9,16 @@ if exists("b:did_ftplugin")
 endif
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Behavior options
+
+setlocal softtabstop=2
+setlocal shiftwidth=2
+setlocal tabstop=2
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Setup Expressions for Autocomplete plugin
 
 let s:eol = '\s*([;$].*)?$'
-let s:com = '** ' . repeat("-", 60-3)
-let s:hdr = '*******************************************************************************\n' .
-          \ '** File        : \<%\>\n' .
-          \ '** Author      : \<$USER\>\n' .
-          \ '** Created     : \d\n' .
-          \ '** Description : \n' .
-          \ '*******************************************************************************\n\:\n'
 
 let s:autocomplete_matches = [
  \      ['\v\cpulse'.s:eol            , '\!PULSE(\:V1 V2 delay rise fall width period)' ],
@@ -28,10 +28,14 @@ let s:autocomplete_matches = [
  \      ['\v\c^(d\w+)'.s:eol          , ' Vp Vn MODELNAME'                              ],
  \      ['\v\c^(m\w+)'.s:eol          , ' Vd Vg Vs Vb MODELNAME L=\: W='                ],
  \      ['\v\c.subckt\s+(\w+).*'.s:eol, '\n\:\n.ends ; \1'                              ],
- \      ['\vhead'                     , '\!'.s:hdr                                      ],
- \      ['\v\* (.*)'.s:eol            , '\!** \1 \(repeat("-",61-col("."))\)'           ],
- \      ['\v\*'.s:eol                 , '\!'.s:com                                      ]
- \ ]
+ \ ] + autocomplete#common("*", v:false)
 
-if exists('*autocomplete#register') | call autocomplete#register("spice", s:autocomplete_matches) | endif
+ "      ['\v\* (.*)'.s:eol            , '\!** \1 \(repeat("-",61-col("."))\)'           ],
+ "      ['\v\** (.*)'.s:eol           , '\!** \1 \(repeat("=",61-col("."))\)'           ],
+ "      ['\v\*'.s:eol                 , '\!'.s:com                                      ]
+
+if exists('*autocomplete#register') 
+    call autocomplete#register("spice", s:autocomplete_matches) 
+    call autocomplete#register("tspice", s:autocomplete_matches) 
+endif
 
