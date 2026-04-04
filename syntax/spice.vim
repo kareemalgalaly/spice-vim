@@ -10,8 +10,8 @@ syn clear
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Highlight Groups
 
-syn match spiceNumber   '\v[ ''=+\-/(),]\zs(\d*\.)?\d+[munpfak]?'
-syn match spiceComment  '^\*.*$' contains=@Spell
+syn match spiceNumber  '\v\c[ ''=+\-/(),]\zs(\d*\.)?\d+(meg|[munpfak])?'
+syn match spiceComment '^\*.*$' contains=@Spell
 syn match spiceComment "\v(;|\$ |//).*"
 syn match spiceCommand '\v^\s*\.\w+'
 syn match spiceElement '\v\c^\s*[axcrvi]\w+'
